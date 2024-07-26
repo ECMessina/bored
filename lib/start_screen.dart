@@ -11,13 +11,10 @@ class StartScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final randomActivity = ref.watch(randomActivityProvider);
-    // const response = '{"activity":"Do a jigsaw puzzle","availability":1,"type":"recreational","participants":1,"price":0.1,"accessibility":"Few to no challenges","duration":"minutes","kidFriendly":true,"link":"https://en.wikipedia.org/wiki/Jigsaw_puzzle","key":"8550768"}';
-    // final returnedActivity = ActivityModel.fromJson(jsonDecode(response) as Map<String, dynamic>);
-    // debugPrint(returnedActivity.toString());
-    // debugPrint(returnedActivity.type);
+
     return Center(
       child: randomActivity.when(
-        data: (returnedActivity) => Text(returnedActivity),
+        data: (returnedActivity) => Text(returnedActivity.activity),
         error: (err, stack) => Text('Error: $err'),
         loading: () => const CircularProgressIndicator(),
       ),

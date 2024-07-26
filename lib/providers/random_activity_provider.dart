@@ -1,9 +1,19 @@
+import 'dart:convert';
+
+import 'package:bored/models/activity_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:http/http.dart' as http;
 part 'random_activity_provider.g.dart';
 
 @riverpod
-Future<String> randomActivity(RandomActivityRef ref) async {
-  await Future.delayed(const Duration(seconds: 3));
-  // throw Exception();
-  return 'Got the data!';
+Future<ActivityModel> randomActivity(RandomActivityRef ref) async {
+  const activityUrl = 'https://bored-api.appbrewery.com/random';
+  final activityResponse = await http.get(Uri.parse(activityUrl));
+  // await Future.delayed(const Duration(seconds: 3));
+
+  if (activityResponse.statusCode == 200) {
+    return ActivityModel.fromJson(jsonDecode(activityResponse.body));
+  } else {
+    throw Exception('Failed to load random activity');
+  }
 }
