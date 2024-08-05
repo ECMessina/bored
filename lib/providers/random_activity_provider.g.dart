@@ -10,13 +10,10 @@ String _$randomActivityHash() => r'420aa619f28ecda78dcb310037bd6aad35b55b21';
 
 /// See also [randomActivity].
 @ProviderFor(randomActivity)
-final randomActivityProvider =
-    AutoDisposeFutureProvider<ActivityModel>.internal(
+final randomActivityProvider = AutoDisposeFutureProvider<ActivityModel>.internal(
   randomActivity,
   name: r'randomActivityProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$randomActivityHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$randomActivityHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

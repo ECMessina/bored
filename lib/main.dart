@@ -1,3 +1,4 @@
+import 'package:bored/constants.dart';
 import 'package:bored/start_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,7 +18,10 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: Scaffold(
-        body: StartScreen(),
+        backgroundColor: AppColors.backgroundColor,
+        body: SafeArea(
+          child: StartScreen(),
+        ),
       ),
     );
   }
