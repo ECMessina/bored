@@ -11,6 +11,5 @@ class LoadingSpinner extends StatelessWidget {
         color: Colors.purple,
       ),
     );
-    ;
   }
 }
