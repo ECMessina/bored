@@ -14,6 +14,7 @@ Future<ActivityModel> randomActivity(RandomActivityRef ref) async {
   // await Future.delayed(const Duration(seconds: 3));
 
   if (activityResponse.statusCode == 200) {
+    // debugPrint(activityResponse.statusCode.toString());
     return ActivityModel.fromJson(jsonDecode(activityResponse.body));
   } else {
     throw Exception('Failed to load random activity');

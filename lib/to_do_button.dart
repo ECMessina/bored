@@ -11,12 +11,12 @@ class ToDoButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton(
       style: ButtonStyle(
-        backgroundColor: const MaterialStatePropertyAll(
+        backgroundColor: const WidgetStatePropertyAll(
           AppColors.backgroundButtonColor,
         ),
-        shadowColor: const MaterialStatePropertyAll(Colors.black),
-        elevation: const MaterialStatePropertyAll(20.0),
-        shape: MaterialStatePropertyAll(
+        shadowColor: const WidgetStatePropertyAll(Colors.black),
+        elevation: const WidgetStatePropertyAll(20.0),
+        shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
