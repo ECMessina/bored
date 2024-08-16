@@ -7,7 +7,7 @@ part of 'filtered_activities_provider.dart';
 // **************************************************************************
 
 String _$filteredActivitiesHash() =>
-    r'1a9efe205c8d45ea8154a34fd5cd802edd931692';
+    r'0c6d3c8859dbcd3446daf281510ed75cf308d855';
 
 /// Copied from Dart SDK
 class _SystemHash {
