@@ -9,12 +9,12 @@ part 'filtered_activities_provider.g.dart';
 Future<List<ActivityModel>> filteredActivities(
   FilteredActivitiesRef ref, {
   String? type,
-  int? participants,
+  String? participants,
 }) async {
   const filteredActivityUrl = 'https://bored-api.appbrewery.com/filter';
   Map<String, String>? userParams = {
     if (type != null) 'type': type,
-    if (participants != null) 'participants': participants.toString(),
+    if (participants != null) 'participants': participants,
   };
 
   final filteredActivityResponse = await http.get(

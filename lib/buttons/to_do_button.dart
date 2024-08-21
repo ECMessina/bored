@@ -3,13 +3,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
 class ToDoButton extends ConsumerWidget {
-  const ToDoButton({required this.onPressed, super.key});
+  const ToDoButton({required this.label, required this.onPressed, this.icon, super.key});
 
+  final String label;
   final Function() onPressed;
+  final IconData? icon;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ElevatedButton(
+    return ElevatedButton.icon(
+      icon: Icon(icon),
       style: ButtonStyle(
         backgroundColor: const WidgetStatePropertyAll(
           AppColors.backgroundButtonColor,
@@ -23,8 +26,8 @@ class ToDoButton extends ConsumerWidget {
         ),
       ),
       onPressed: onPressed,
-      child: Text(
-        'Find me something \nto do!',
+      label: Text(
+        label,
         style: mainTextStyle,
         textAlign: TextAlign.center,
       ),

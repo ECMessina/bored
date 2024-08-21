@@ -1,6 +1,7 @@
 import 'package:bored/loading_spinner.dart';
+// import 'package:bored/providers/filtered_activities_provider.dart';
 import 'package:bored/providers/random_activity_provider.dart';
-import 'package:bored/to_do_button.dart';
+import 'package:bored/buttons/to_do_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bored/constants.dart';
@@ -38,6 +39,7 @@ class _StartScreenState extends ConsumerState<StartScreen> {
               }
               ref.invalidate(randomActivityProvider);
             },
+            label: 'Find me something \nto do!',
           ),
         ),
         Expanded(
@@ -47,6 +49,21 @@ class _StartScreenState extends ConsumerState<StartScreen> {
                 if (userHasTapped == false) {
                   return Container();
                 } else {
+                  // final filteredActivities = ref.watch(FilteredActivitiesProvider(
+                  //   type: 'education',
+                  //   // participants: 2,
+                  // ));
+
+                  // return filteredActivities.when(
+                  //   data: (data) {
+                  //     return Text("$data");
+                  //   },
+                  //   error: (error, stackTrace) {
+                  //     return Text('$error');
+                  //   },
+                  //   loading: () => const LoadingSpinner(),
+                  // );
+
                   final randomActivity = ref.watch(randomActivityProvider);
 
                   return randomActivity.when(

@@ -7,7 +7,7 @@ part of 'filtered_activities_provider.dart';
 // **************************************************************************
 
 String _$filteredActivitiesHash() =>
-    r'0c6d3c8859dbcd3446daf281510ed75cf308d855';
+    r'e5161ec341aa56a61735146903bfa7e5f04012fe';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -42,7 +42,7 @@ class FilteredActivitiesFamily extends Family<AsyncValue<List<ActivityModel>>> {
   /// See also [filteredActivities].
   FilteredActivitiesProvider call({
     String? type,
-    int? participants,
+    String? participants,
   }) {
     return FilteredActivitiesProvider(
       type: type,
@@ -81,7 +81,7 @@ class FilteredActivitiesProvider
   /// See also [filteredActivities].
   FilteredActivitiesProvider({
     String? type,
-    int? participants,
+    String? participants,
   }) : this._internal(
           (ref) => filteredActivities(
             ref as FilteredActivitiesRef,
@@ -113,7 +113,7 @@ class FilteredActivitiesProvider
   }) : super.internal();
 
   final String? type;
-  final int? participants;
+  final String? participants;
 
   @override
   Override overrideWith(
@@ -163,7 +163,7 @@ mixin FilteredActivitiesRef
   String? get type;
 
   /// The parameter `participants` of this provider.
-  int? get participants;
+  String? get participants;
 }
 
 class _FilteredActivitiesProviderElement
@@ -174,7 +174,8 @@ class _FilteredActivitiesProviderElement
   @override
   String? get type => (origin as FilteredActivitiesProvider).type;
   @override
-  int? get participants => (origin as FilteredActivitiesProvider).participants;
+  String? get participants =>
+      (origin as FilteredActivitiesProvider).participants;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
