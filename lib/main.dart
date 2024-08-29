@@ -1,5 +1,5 @@
+import 'package:bored/screens/activity_request_screen.dart';
 import 'package:bored/constants.dart';
-import 'package:bored/start_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,7 +20,7 @@ class MainApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: AppColors.backgroundColor,
         body: SafeArea(
-          child: StartScreen(),
+          child: ActivityRequestScreen(),
         ),
       ),
     );

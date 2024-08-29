@@ -7,16 +7,18 @@ class FilterButton extends StatelessWidget {
     required this.hint,
     required this.onChanged,
     required this.items,
+    this.value,
   });
 
   final String hint;
-  final List<Map<String, String>> items;
-
+  final Map<String, String> items;
+  final String? value;
   final ValueChanged<String?> onChanged;
 
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
+      value: value,
       borderRadius: BorderRadius.circular(10),
       iconSize: 48,
       iconEnabledColor: Colors.purple.shade600,
@@ -30,16 +32,24 @@ class FilterButton extends StatelessWidget {
         height: 2,
         color: Colors.purple.shade600,
       ),
-      items: items.map((Map<String, String> item) {
-        return DropdownMenuItem<String>(
-          alignment: Alignment.center,
-          value: item[item.keys.first]!,
-          child: Text(
-            item.keys.first,
-            style: activityTextStyle,
+      items: [
+        if (value != null)
+          const DropdownMenuItem<String>(
+            alignment: Alignment.center,
+            value: null,
+            child: Text('Clear Selection'),
           ),
-        );
-      }).toList(),
+        ...items.entries.map((entry) {
+          return DropdownMenuItem<String>(
+            alignment: Alignment.center,
+            value: entry.value,
+            child: Text(
+              entry.value,
+              style: activityTextStyle,
+            ),
+          );
+        }),
+      ],
     );
   }
 }
