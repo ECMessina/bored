@@ -215,9 +215,7 @@ class __$$ActivityModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ActivityModelImpl
-    with DiagnosticableTreeMixin
-    implements _ActivityModel {
+class _$ActivityModelImpl extends _ActivityModel with DiagnosticableTreeMixin {
   const _$ActivityModelImpl(
       {required this.activity,
       required this.availability,
@@ -228,7 +226,8 @@ class _$ActivityModelImpl
       required this.duration,
       required this.kidFriendly,
       required this.link,
-      required this.key});
+      required this.key})
+      : super._();
 
   factory _$ActivityModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ActivityModelImplFromJson(json);
@@ -318,7 +317,7 @@ class _$ActivityModelImpl
   }
 }
 
-abstract class _ActivityModel implements ActivityModel {
+abstract class _ActivityModel extends ActivityModel {
   const factory _ActivityModel(
       {required final String activity,
       required final double availability,
@@ -330,6 +329,7 @@ abstract class _ActivityModel implements ActivityModel {
       required final bool kidFriendly,
       required final String link,
       required final String key}) = _$ActivityModelImpl;
+  const _ActivityModel._() : super._();
 
   factory _ActivityModel.fromJson(Map<String, dynamic> json) =
       _$ActivityModelImpl.fromJson;

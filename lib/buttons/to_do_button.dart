@@ -3,7 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
 class ToDoButton extends ConsumerWidget {
-  const ToDoButton({required this.label, required this.onPressed, this.icon, super.key});
+  const ToDoButton({
+    required this.label,
+    required this.onPressed,
+    this.icon,
+    super.key,
+  });
 
   final String label;
   final Function() onPressed;

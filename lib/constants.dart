@@ -28,4 +28,5 @@ final linkTextStyle = GoogleFonts.rubik(
 class AppColors {
   static const backgroundColor = Color.fromARGB(255, 231, 204, 236);
   static const backgroundButtonColor = Color.fromARGB(255, 222, 153, 235);
+  static const backgroundCardColor = Color.fromARGB(255, 210, 174, 216);
 }
