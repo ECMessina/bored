@@ -30,3 +30,11 @@ class AppColors {
   static const backgroundButtonColor = Color.fromARGB(255, 222, 153, 235);
   static const backgroundCardColor = Color.fromARGB(255, 210, 174, 216);
 }
+
+class CustomException implements Exception {
+  final String message;
+  CustomException(this.message);
+
+  @override
+  String toString() => message;
+}

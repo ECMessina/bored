@@ -41,12 +41,14 @@ class _DisplayScreenState extends ConsumerState<DisplayScreen> {
     return filteredActivities.when(
       loading: () => const LoadingSpinner(),
       error: (error, stackTrace) => ErrorAlert(
-          error: error,
-          onPressed: () {
-            Navigator.pop(context);
-          }),
-      data: (filteredActivities) => Stack(children: [
-        PageView.builder(
+        error: error,
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+      data: (filteredActivities) => Stack(
+        children: [
+          PageView.builder(
             controller: _pageController,
             itemCount: filteredActivities.length,
             itemBuilder: (BuildContext context, int index) {
@@ -61,8 +63,12 @@ class _DisplayScreenState extends ConsumerState<DisplayScreen> {
                   }
                   return Center(
                     child: SizedBox(
-                      height: Curves.easeOut.transform(value) * MediaQuery.sizeOf(context).height - 40,
-                      width: Curves.easeOut.transform(value) * MediaQuery.sizeOf(context).width - 50,
+                      height: Curves.easeOut.transform(value) *
+                              MediaQuery.sizeOf(context).height -
+                          40,
+                      width: Curves.easeOut.transform(value) *
+                              MediaQuery.sizeOf(context).width -
+                          50,
                       child: child,
                     ),
                   );
@@ -79,8 +85,10 @@ class _DisplayScreenState extends ConsumerState<DisplayScreen> {
                       }),
                 ),
               );
-            }),
-      ]),
+            },
+          ),
+        ],
+      ),
     );
   }
 
@@ -97,11 +105,12 @@ class _DisplayScreenState extends ConsumerState<DisplayScreen> {
         },
       ),
       data: (returnedActivity) => DataDetails(
-          activityModel: returnedActivity,
-          label: "Find something else to do!",
-          onPressed: () {
-            ref.invalidate(randomActivityProvider);
-          }),
+        activityModel: returnedActivity,
+        label: "Find something else to do!",
+        onPressed: () {
+          ref.invalidate(randomActivityProvider);
+        },
+      ),
     );
   }
 
@@ -111,9 +120,9 @@ class _DisplayScreenState extends ConsumerState<DisplayScreen> {
       backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         child: Center(
-          child: Expanded(
-            child: (widget.userTappedRandom) ? getUserTappedRandom() : getUserTappedFiltered(),
-          ),
+          child: (widget.userTappedRandom)
+              ? getUserTappedRandom()
+              : getUserTappedFiltered(),
         ),
       ),
     );

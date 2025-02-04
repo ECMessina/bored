@@ -41,50 +41,34 @@ class DataDetails extends StatelessWidget {
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 10,
               children: [
                 Text(
                   activityModel.getActivityTypeText(),
                   style: activityTextStyle,
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
                 Text(
                   activityModel.participants == 1 ? 'Only requires 1 person' : 'Requires ${activityModel.participants} people',
                   style: activityTextStyle,
-                ),
-                const SizedBox(
-                  height: 10,
                 ),
                 Text(
                   activityModel.accessibility,
                   style: activityTextStyle,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
                 Text(
                   'Can take a few ${activityModel.duration}',
                   style: activityTextStyle,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
                 Text(
                   activityModel.kidFriendly == true ? 'Kid friendly!' : 'Not for kids!',
                   style: activityTextStyle,
-                ),
-                const SizedBox(
-                  height: 10,
                 ),
                 Text(
                   activityModel.getAvailabilityForActivity(),
                   style: activityTextStyle,
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(
-                  height: 10,
                 ),
                 Text(
                   activityModel.getPriceForActivity(),

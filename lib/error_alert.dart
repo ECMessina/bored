@@ -15,7 +15,10 @@ class ErrorAlert extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: AppColors.backgroundButtonColor,
-      title: Text('Error: $error'),
+      title: Text(
+        '$error',
+        textAlign: TextAlign.center,
+      ),
       titleTextStyle: mainTextStyle,
       actions: [
         Center(
