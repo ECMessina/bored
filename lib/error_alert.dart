@@ -19,7 +19,7 @@ class ErrorAlert extends StatelessWidget {
         '$error',
         textAlign: TextAlign.center,
       ),
-      titleTextStyle: mainTextStyle,
+      titleTextStyle: AppTextStyles.mainTextStyle,
       actions: [
         Center(
           child: TextButton.icon(

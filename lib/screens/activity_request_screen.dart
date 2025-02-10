@@ -9,7 +9,8 @@ class ActivityRequestScreen extends ConsumerStatefulWidget {
   const ActivityRequestScreen({super.key});
 
   @override
-  ConsumerState<ActivityRequestScreen> createState() => _ActivityDetailsScreenState();
+  ConsumerState<ActivityRequestScreen> createState() =>
+      _ActivityDetailsScreenState();
 }
 
 class _ActivityDetailsScreenState extends ConsumerState<ActivityRequestScreen> {
@@ -46,7 +47,7 @@ class _ActivityDetailsScreenState extends ConsumerState<ActivityRequestScreen> {
           const Spacer(),
           Text(
             'Bored? Do something!',
-            style: activityTextStyle,
+            style: AppTextStyles.mainTextStyleWithColor,
           ),
           const Spacer(),
           ToDoButton(
@@ -66,14 +67,15 @@ class _ActivityDetailsScreenState extends ConsumerState<ActivityRequestScreen> {
           const Spacer(),
           Text(
             'Filter:',
-            style: activityTextStyle,
+            style: AppTextStyles.mainTextStyleWithColor,
             textAlign: TextAlign.center,
           ),
           Container(
             padding: const EdgeInsets.all(10.0),
             decoration: BoxDecoration(
+              color: AppColors.backgroundFilterColor,
               border: Border.all(
-                color: Colors.purple.shade600,
+                color: AppColors.standardDarkColor,
                 width: 2,
               ),
               borderRadius: BorderRadius.circular(10),

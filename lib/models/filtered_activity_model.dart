@@ -1,26 +1,28 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
-part 'activity_model.freezed.dart';
-part 'activity_model.g.dart';
+part 'filtered_activity_model.freezed.dart';
+part 'filtered_activity_model.g.dart';
 
 @freezed
-class ActivityModel with _$ActivityModel {
-  const ActivityModel._();
-  const factory ActivityModel({
+class FilteredActivityModel with _$FilteredActivityModel {
+  const FilteredActivityModel._();
+  const factory FilteredActivityModel({
     required String activity,
+    required double availability,
     required String type,
     required int participants,
     required double price,
-    required double accessibility,
+    required String accessibility,
+    required String duration,
+    required bool kidFriendly,
     required String link,
     required String key,
-  }) = _ActivityModel;
+  }) = _FilteredActivityModel;
 
-  factory ActivityModel.fromJson(Map<String, dynamic> json) =>
-      _$ActivityModelFromJson(json);
+  factory FilteredActivityModel.fromJson(Map<String, dynamic> json) =>
+      _$FilteredActivityModelFromJson(json);
 
   String getActivityTypeText() {
-    // type was set as activity with appbrewery's API format
     switch (type) {
       case 'education':
         return 'This is educational';
@@ -43,17 +45,17 @@ class ActivityModel with _$ActivityModel {
     }
   }
 
-  String getAccessibility() {
-    if (accessibility <= 0.2) {
-      return 'Easily accessed!';
-    } else if (accessibility > 0.2 && accessibility <= 0.5) {
+  String getAvailabilityForActivity() {
+    if (availability <= 0.2) {
+      return 'Easy to access';
+    } else if (availability > 0.2 && availability <= 0.5) {
       return 'Somewhat easy to access';
-    } else if (accessibility > 0.5 && accessibility <= 0.8) {
-      return 'A little hard to access';
-    } else if (accessibility > 0.8 && accessibility <= 1.0) {
-      return 'Hard to access';
+    } else if (availability > 0.5 && availability <= 0.8) {
+      return 'Hard to come by';
+    } else if (availability > 0.8 && availability <= 1.0) {
+      return 'Very hard to come by';
     }
-    return accessibility.toString();
+    return availability.toString();
   }
 
   String getPriceForActivity() {
@@ -67,5 +69,18 @@ class ActivityModel with _$ActivityModel {
       return 'Expensive';
     }
     return price.toString();
+  }
+
+  String getAccessibility() {
+    switch (accessibility) {
+      case 'Easy':
+        return 'Few to no challenges';
+      case 'Medium':
+        return 'Some challenges';
+      case 'High':
+        return 'Very challenging';
+      default:
+        return accessibility;
+    }
   }
 }

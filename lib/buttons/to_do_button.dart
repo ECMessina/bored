@@ -22,7 +22,7 @@ class ToDoButton extends ConsumerWidget {
         backgroundColor: const WidgetStatePropertyAll(
           AppColors.backgroundButtonColor,
         ),
-        shadowColor: const WidgetStatePropertyAll(Colors.black),
+        shadowColor: WidgetStatePropertyAll(AppColors.shadowColor),
         elevation: const WidgetStatePropertyAll(20.0),
         shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(
@@ -33,7 +33,7 @@ class ToDoButton extends ConsumerWidget {
       onPressed: onPressed,
       label: Text(
         label,
-        style: mainTextStyle,
+        style: AppTextStyles.mainTextStyle,
         textAlign: TextAlign.center,
       ),
     );

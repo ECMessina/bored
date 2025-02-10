@@ -21,16 +21,16 @@ class FilterButton extends StatelessWidget {
       value: value,
       borderRadius: BorderRadius.circular(10),
       iconSize: 48,
-      iconEnabledColor: Colors.purple.shade600,
+      iconEnabledColor: AppColors.standardDarkColor,
       dropdownColor: AppColors.backgroundButtonColor,
       onChanged: onChanged,
       hint: Text(
         hint,
-        style: activityTextStyle,
+        style: AppTextStyles.activityTextStyle,
       ),
       underline: Container(
         height: 2,
-        color: Colors.purple.shade600,
+        color: AppColors.standardDarkColor,
       ),
       items: [
         if (value != null)
@@ -42,10 +42,12 @@ class FilterButton extends StatelessWidget {
         ...items.entries.map((entry) {
           return DropdownMenuItem<String>(
             alignment: Alignment.center,
-            value: entry.value,
+            value: entry.value[0].toUpperCase() +
+                entry.value.substring(1).toLowerCase(),
             child: Text(
-              entry.value,
-              style: activityTextStyle,
+              entry.value[0].toUpperCase() +
+                  entry.value.substring(1).toLowerCase(),
+              style: AppTextStyles.activityTextStyle,
             ),
           );
         }),

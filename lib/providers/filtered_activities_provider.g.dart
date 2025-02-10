@@ -7,7 +7,7 @@ part of 'filtered_activities_provider.dart';
 // **************************************************************************
 
 String _$filteredActivitiesHash() =>
-    r'e5161ec341aa56a61735146903bfa7e5f04012fe';
+    r'0bfb0ad30fd5589c410a3b1c9244672fe4a8944e';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -35,7 +35,8 @@ class _SystemHash {
 const filteredActivitiesProvider = FilteredActivitiesFamily();
 
 /// See also [filteredActivities].
-class FilteredActivitiesFamily extends Family<AsyncValue<List<ActivityModel>>> {
+class FilteredActivitiesFamily
+    extends Family<AsyncValue<List<FilteredActivityModel>>> {
   /// See also [filteredActivities].
   const FilteredActivitiesFamily();
 
@@ -77,7 +78,7 @@ class FilteredActivitiesFamily extends Family<AsyncValue<List<ActivityModel>>> {
 
 /// See also [filteredActivities].
 class FilteredActivitiesProvider
-    extends AutoDisposeFutureProvider<List<ActivityModel>> {
+    extends AutoDisposeFutureProvider<List<FilteredActivityModel>> {
   /// See also [filteredActivities].
   FilteredActivitiesProvider({
     String? type,
@@ -117,7 +118,8 @@ class FilteredActivitiesProvider
 
   @override
   Override overrideWith(
-    FutureOr<List<ActivityModel>> Function(FilteredActivitiesRef provider)
+    FutureOr<List<FilteredActivityModel>> Function(
+            FilteredActivitiesRef provider)
         create,
   ) {
     return ProviderOverride(
@@ -136,7 +138,8 @@ class FilteredActivitiesProvider
   }
 
   @override
-  AutoDisposeFutureProviderElement<List<ActivityModel>> createElement() {
+  AutoDisposeFutureProviderElement<List<FilteredActivityModel>>
+      createElement() {
     return _FilteredActivitiesProviderElement(this);
   }
 
@@ -157,8 +160,10 @@ class FilteredActivitiesProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin FilteredActivitiesRef
-    on AutoDisposeFutureProviderRef<List<ActivityModel>> {
+    on AutoDisposeFutureProviderRef<List<FilteredActivityModel>> {
   /// The parameter `type` of this provider.
   String? get type;
 
@@ -167,7 +172,7 @@ mixin FilteredActivitiesRef
 }
 
 class _FilteredActivitiesProviderElement
-    extends AutoDisposeFutureProviderElement<List<ActivityModel>>
+    extends AutoDisposeFutureProviderElement<List<FilteredActivityModel>>
     with FilteredActivitiesRef {
   _FilteredActivitiesProviderElement(super.provider);
 
@@ -178,4 +183,4 @@ class _FilteredActivitiesProviderElement
       (origin as FilteredActivitiesProvider).participants;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

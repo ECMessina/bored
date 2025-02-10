@@ -1,5 +1,6 @@
 import 'package:bored/data_details.dart';
 import 'package:bored/error_alert.dart';
+import 'package:bored/filtered_data_details.dart';
 import 'package:bored/loading_spinner.dart';
 import 'package:bored/providers/filtered_activities_provider.dart';
 import 'package:bored/providers/random_activity_provider.dart';
@@ -77,12 +78,13 @@ class _DisplayScreenState extends ConsumerState<DisplayScreen> {
                   color: AppColors.backgroundCardColor,
                   margin: const EdgeInsets.all(15),
                   elevation: 5,
-                  child: DataDetails(
-                      activityModel: activity,
-                      label: "Re-do",
-                      onPressed: () {
-                        Navigator.pop(context);
-                      }),
+                  child: FilteredDataDetails(
+                    filteredActivityModel: activity,
+                    label: "Re-do",
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
                 ),
               );
             },
