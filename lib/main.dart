@@ -1,12 +1,19 @@
 import 'package:bored/screens/activity_request_screen.dart';
 import 'package:bored/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(
-    const ProviderScope(
-      child: MainApp(),
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]).then(
+    (value) => runApp(
+      const ProviderScope(
+        child: MainApp(),
+      ),
     ),
   );
 }
