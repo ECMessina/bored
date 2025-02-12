@@ -2,10 +2,12 @@ import 'package:bored/constants.dart';
 import 'package:bored/models/filtered_activity_model.dart';
 
 class FilteredActivities {
-  static List<FilteredActivityModel> filteredActivities(
-      {String? type, int? participants}) {
+  static List<FilteredActivityModel> filteredActivities({
+    String? type,
+    int? participants,
+  }) {
     final filteredList = _listOfFilteredActivities.where((activity) {
-      final matchesType = type == null || activity.type == type;
+      final matchesType = type == null || activity.type == type.toLowerCase();
       final matchesParticipants =
           participants == null || activity.participants == participants;
 

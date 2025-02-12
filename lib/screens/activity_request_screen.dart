@@ -80,69 +80,62 @@ class _ActivityDetailsScreenState extends ConsumerState<ActivityRequestScreen> {
               ),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 10,
-                ),
-                FilterButton(
-                  hint: 'Types',
-                  value: selectedType,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedType = value;
-                    });
-                  },
-                  items: types,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                FilterButton(
-                  hint: 'Participants',
-                  value: selectedParticipants,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedParticipants = value;
-                    });
-                  },
-                  items: participants,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                ToDoButton(
-                  icon: Icons.view_list_outlined,
-                  label: 'Get activities!',
-                  onPressed: () {
-                    if (selectedType == null && selectedParticipants == null) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'No filters selected',
-                            textAlign: TextAlign.center,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                spacing: 25,
+                children: [
+                  FilterButton(
+                    hint: 'Types',
+                    value: selectedType,
+                    onChanged: (value) {
+                      setState(() {
+                        selectedType = value;
+                      });
+                    },
+                    items: types,
+                  ),
+                  FilterButton(
+                    hint: 'Participants',
+                    value: selectedParticipants,
+                    onChanged: (value) {
+                      setState(() {
+                        selectedParticipants = value;
+                      });
+                    },
+                    items: participants,
+                  ),
+                  ToDoButton(
+                    icon: Icons.view_list_outlined,
+                    label: 'Get activities!',
+                    onPressed: () {
+                      if (selectedType == null &&
+                          selectedParticipants == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'No filters selected',
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                        return;
+                      }
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DisplayScreen(
+                            userTappedRandom: false,
+                            selectedType: selectedType,
+                            selectedParticipants: selectedParticipants,
                           ),
                         ),
                       );
-                      return;
-                    }
-
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DisplayScreen(
-                          userTappedRandom: false,
-                          selectedType: selectedType,
-                          selectedParticipants: selectedParticipants,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-              ],
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
           const Spacer(),

@@ -1,6 +1,7 @@
 import 'package:bored/buttons/to_do_button.dart';
 import 'package:bored/constants.dart';
 import 'package:bored/models/activity_model.dart';
+import 'package:bored/models/filtered_activity_model.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:validators/validators.dart';
@@ -8,12 +9,14 @@ import 'package:validators/validators.dart';
 class DataDetails extends StatefulWidget {
   const DataDetails({
     super.key,
-    required this.activityModel,
+    this.activityModel,
+    this.filteredActivityModel,
     required this.label,
     required this.onPressed,
   });
 
-  final ActivityModel activityModel;
+  final ActivityModel? activityModel;
+  final FilteredActivityModel? filteredActivityModel;
   final String label;
   final Function() onPressed;
 
@@ -52,7 +55,7 @@ class _DataDetailsState extends State<DataDetails>
         children: [
           const Spacer(),
           Text(
-            '${widget.activityModel.activity}!',
+            '${widget.activityModel != null ? widget.activityModel!.activity : widget.filteredActivityModel!.activity}!',
             style: AppTextStyles.boldActivityTextStyle,
             textAlign: TextAlign.center,
           ),
@@ -71,32 +74,63 @@ class _DataDetailsState extends State<DataDetails>
               spacing: 10,
               children: [
                 Text(
-                  widget.activityModel.getActivityTypeText(),
+                  widget.activityModel != null
+                      ? widget.activityModel!.getActivityTypeText()
+                      : widget.filteredActivityModel!.getActivityTypeText(),
                   style: AppTextStyles.activityTextStyle,
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  widget.activityModel.participants == 1
-                      ? 'Only requires 1 person'
-                      : 'Requires ${widget.activityModel.participants} people',
+                  widget.activityModel != null
+                      ? widget.activityModel!.participants == 1
+                          ? 'Only requires 1 person'
+                          : 'Requires ${widget.activityModel!.participants} people'
+                      : widget.filteredActivityModel!.participants == 1
+                          ? 'Only requires 1 person'
+                          : 'Requires ${widget.filteredActivityModel!.participants} people',
                   style: AppTextStyles.activityTextStyle,
                 ),
                 Text(
-                  widget.activityModel.getAccessibility(),
+                  widget.activityModel != null
+                      ? widget.activityModel!.getAccessibility()
+                      : widget.filteredActivityModel!.getAccessibility(),
                   style: AppTextStyles.activityTextStyle,
                 ),
+                if (widget.filteredActivityModel != null) ...[
+                  Text(
+                    'Can take a few ${widget.filteredActivityModel!.duration}',
+                    style: AppTextStyles.activityTextStyle,
+                  ),
+                  Text(
+                    widget.filteredActivityModel!.kidFriendly == true
+                        ? 'Kid friendly!'
+                        : 'Not for kids!',
+                    style: AppTextStyles.activityTextStyle,
+                  ),
+                  Text(
+                    widget.filteredActivityModel!.getAvailabilityForActivity(),
+                    style: AppTextStyles.activityTextStyle,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
                 Text(
-                  widget.activityModel.getPriceForActivity(),
+                  widget.activityModel != null
+                      ? widget.activityModel!.getPriceForActivity()
+                      : widget.filteredActivityModel!.getPriceForActivity(),
                   style: AppTextStyles.activityTextStyle,
                 ),
               ],
             ),
           ),
           const Spacer(),
-          if (isURL(widget.activityModel.link))
+          if (isURL(widget.activityModel != null
+              ? widget.activityModel!.link
+              : widget.filteredActivityModel!.link))
             GestureDetector(
               onTap: () async {
-                final uri = Uri.parse(widget.activityModel.link);
+                final uri = Uri.parse(widget.activityModel != null
+                    ? widget.activityModel!.link
+                    : widget.filteredActivityModel!.link);
                 if (!await launchUrl(uri)) {
                   if (context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(

@@ -1,6 +1,5 @@
 import 'package:bored/data_details.dart';
 import 'package:bored/error_alert.dart';
-import 'package:bored/filtered_data_details.dart';
 import 'package:bored/loading_spinner.dart';
 import 'package:bored/providers/filtered_activities_provider.dart';
 import 'package:bored/providers/random_activity_provider.dart';
@@ -34,10 +33,12 @@ class _DisplayScreenState extends ConsumerState<DisplayScreen> {
   }
 
   Widget getUserTappedFiltered() {
-    final filteredActivities = ref.watch(FilteredActivitiesProvider(
-      type: widget.selectedType,
-      participants: widget.selectedParticipants,
-    ));
+    final filteredActivities = ref.watch(
+      FilteredActivitiesProvider(
+        type: widget.selectedType,
+        participants: widget.selectedParticipants,
+      ),
+    );
 
     return filteredActivities.when(
       loading: () => const LoadingSpinner(),
@@ -78,7 +79,7 @@ class _DisplayScreenState extends ConsumerState<DisplayScreen> {
                   color: AppColors.backgroundCardColor,
                   margin: const EdgeInsets.all(15),
                   elevation: 5,
-                  child: FilteredDataDetails(
+                  child: DataDetails(
                     filteredActivityModel: activity,
                     label: "Re-do",
                     onPressed: () {

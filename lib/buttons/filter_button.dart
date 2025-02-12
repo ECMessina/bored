@@ -39,18 +39,20 @@ class FilterButton extends StatelessWidget {
             value: null,
             child: Text('Clear Selection'),
           ),
-        ...items.entries.map((entry) {
-          return DropdownMenuItem<String>(
-            alignment: Alignment.center,
-            value: entry.value[0].toUpperCase() +
-                entry.value.substring(1).toLowerCase(),
-            child: Text(
-              entry.value[0].toUpperCase() +
+        ...items.entries.map(
+          (entry) {
+            return DropdownMenuItem<String>(
+              alignment: Alignment.center,
+              value: entry.value[0].toUpperCase() +
                   entry.value.substring(1).toLowerCase(),
-              style: AppTextStyles.activityTextStyle,
-            ),
-          );
-        }),
+              child: Text(
+                entry.value[0].toUpperCase() +
+                    entry.value.substring(1).toLowerCase(),
+                style: AppTextStyles.activityTextStyle,
+              ),
+            );
+          },
+        ),
       ],
     );
   }
