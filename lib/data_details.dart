@@ -49,83 +49,87 @@ class _DataDetailsState extends State<DataDetails>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const Spacer(),
           Text(
             '${widget.activityModel != null ? widget.activityModel!.activity : widget.filteredActivityModel!.activity}!',
             style: AppTextStyles.boldActivityTextStyle,
             textAlign: TextAlign.center,
           ),
-          const Spacer(),
-          Container(
-            padding: const EdgeInsets.all(10.0),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: AppColors.standardDarkColor,
-                width: 2,
+          Flexible(
+            child: Container(
+              padding: const EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: AppColors.standardDarkColor,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(10),
               ),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              spacing: 10,
-              children: [
-                Text(
-                  widget.activityModel != null
-                      ? widget.activityModel!.getActivityTypeText()
-                      : widget.filteredActivityModel!.getActivityTypeText(),
-                  style: AppTextStyles.activityTextStyle,
-                  textAlign: TextAlign.center,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: 10,
+                  children: [
+                    Text(
+                      widget.activityModel != null
+                          ? widget.activityModel!.getActivityTypeText()
+                          : widget.filteredActivityModel!.getActivityTypeText(),
+                      style: AppTextStyles.activityTextStyle,
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      widget.activityModel != null
+                          ? widget.activityModel!.participants == 1
+                              ? 'Only requires 1 person'
+                              : 'Requires ${widget.activityModel!.participants} people'
+                          : widget.filteredActivityModel!.participants == 1
+                              ? 'Only requires 1 person'
+                              : 'Requires ${widget.filteredActivityModel!.participants} people',
+                      style: AppTextStyles.activityTextStyle,
+                    ),
+                    Text(
+                      widget.activityModel != null
+                          ? widget.activityModel!.getAccessibility()
+                          : widget.filteredActivityModel!.getAccessibility(),
+                      style: AppTextStyles.activityTextStyle,
+                      textAlign: TextAlign.center,
+                    ),
+                    if (widget.filteredActivityModel != null) ...[
+                      Text(
+                        'Can take a few ${widget.filteredActivityModel!.duration}',
+                        style: AppTextStyles.activityTextStyle,
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        widget.filteredActivityModel!.kidFriendly == true
+                            ? 'Kid friendly!'
+                            : 'Not for kids!',
+                        style: AppTextStyles.activityTextStyle,
+                      ),
+                      Text(
+                        widget.filteredActivityModel!
+                            .getAvailabilityForActivity(),
+                        style: AppTextStyles.activityTextStyle,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                    Text(
+                      widget.activityModel != null
+                          ? widget.activityModel!.getPriceForActivity()
+                          : widget.filteredActivityModel!.getPriceForActivity(),
+                      style: AppTextStyles.activityTextStyle,
+                    ),
+                  ],
                 ),
-                Text(
-                  widget.activityModel != null
-                      ? widget.activityModel!.participants == 1
-                          ? 'Only requires 1 person'
-                          : 'Requires ${widget.activityModel!.participants} people'
-                      : widget.filteredActivityModel!.participants == 1
-                          ? 'Only requires 1 person'
-                          : 'Requires ${widget.filteredActivityModel!.participants} people',
-                  style: AppTextStyles.activityTextStyle,
-                ),
-                Text(
-                  widget.activityModel != null
-                      ? widget.activityModel!.getAccessibility()
-                      : widget.filteredActivityModel!.getAccessibility(),
-                  style: AppTextStyles.activityTextStyle,
-                ),
-                if (widget.filteredActivityModel != null) ...[
-                  Text(
-                    'Can take a few ${widget.filteredActivityModel!.duration}',
-                    style: AppTextStyles.activityTextStyle,
-                  ),
-                  Text(
-                    widget.filteredActivityModel!.kidFriendly == true
-                        ? 'Kid friendly!'
-                        : 'Not for kids!',
-                    style: AppTextStyles.activityTextStyle,
-                  ),
-                  Text(
-                    widget.filteredActivityModel!.getAvailabilityForActivity(),
-                    style: AppTextStyles.activityTextStyle,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-                Text(
-                  widget.activityModel != null
-                      ? widget.activityModel!.getPriceForActivity()
-                      : widget.filteredActivityModel!.getPriceForActivity(),
-                  style: AppTextStyles.activityTextStyle,
-                ),
-              ],
+              ),
             ),
           ),
-          const Spacer(),
           if (isURL(widget.activityModel != null
               ? widget.activityModel!.link
-              : widget.filteredActivityModel!.link))
+              : widget.filteredActivityModel!.link)) ...[
             GestureDetector(
               onTap: () async {
                 final uri = Uri.parse(widget.activityModel != null
@@ -181,13 +185,12 @@ class _DataDetailsState extends State<DataDetails>
                 ],
               ),
             ),
-          const Spacer(),
+          ],
           ToDoButton(
             icon: Icons.redo,
             label: widget.label,
             onPressed: widget.onPressed,
           ),
-          const Spacer(),
         ],
       ),
     );
